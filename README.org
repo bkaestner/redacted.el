@@ -1,0 +1,4 @@
+#+TITLE: Secret-mode
+=secret-mode= is an Emacs [[info:emacs#Minor Modes][minor mode]] to hide your current text.
+* Screenshot
+[[file:screenshot.png]]
