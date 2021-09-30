@@ -2,3 +2,14 @@
 =secret-mode= is an Emacs [[info:emacs#Minor Modes][minor mode]] to hide your current text.
 * Screenshot
 [[file:screenshot.png]]
+
+* Installation
+For now, copy =secret-mode.el='s content into a buffer and then use =M-x package-install-from-buffer=.
+
+* Usage
+Use =M-x secret-mode= to enable =secret-mode= in the current buffer.
+
+* Motivation
+While working on a completely unrelated task, I wanted to share a screenshot of my current Emacs frame, but /not/ of the actual text contents. And while GIMP's pixelate filter did the job, I didn't want to fire up my image manipulation program just to share a picture of a custom theme or some functionality.
+
+I thought that Emacs /must/ have some functionality to hide certain information on the displayed text. I remembered =toggle-rot13-mode=, but anyone interested in the text could decrypt it rather quickly. So instead, I had a look into its implementation and put my Emacs Lisp hat on to find my own solution.
