@@ -4,7 +4,17 @@
 [[file:screenshot.png]]
 
 * Installation
-For now, copy =secret-mode.el='s content into a buffer and then use =M-x package-install-from-buffer=.
+** Manual
+copy =secret-mode.el='s content into a buffer and then use =M-x package-install-from-buffer=.
+** Straight.el
+Using [[https://github.com/raxod502/straight.el][straight.el]] package manager
+
+#+begin_src emacs-lisp
+  (straight-use-package
+   '(secret-mode
+     :type git
+     :host github :repo "/bkaestner/secret-mode.el"))
+#+end_src
 
 * Usage
 Use =M-x secret-mode= to enable =secret-mode= in the current buffer.
