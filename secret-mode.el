@@ -27,15 +27,31 @@
 
 ;;; Code:
 
-(defconst secret-mode-table
-  (let ((disptbl (make-display-table)))
-    (dotimes (i 1024)
-      (aset disptbl i
-            (pcase (get-char-code-property i 'general-category)
-              ((or 'Cc 'Cf 'Zs 'Zl 'Zp) nil)
-              ('Lu (vector (make-glyph-code ?▆)))
-              (_   (vector (make-glyph-code ?▃))))))
-    disptbl)
+(eval-and-compile
+  (defconst secret-mode--max-letter-char-code
+    (eval-when-compile
+      (let ((max-code-point #x10FFFF)    ; Max Unicode code point
+            (letter-categories '(Lu Ll)) ; Upper and Lower case letters
+            result)
+        (dotimes (i (1+ max-code-point))
+          (when (memq (get-char-code-property i 'general-category)
+                      letter-categories)
+            (setq result i)))
+        result))
+    "Maximum Unicode code point that designates a letter.")
+
+  (defun secret-mode--compute-table ()
+    "Compute the display table for `secret-mode'."
+    (let ((disptbl (make-display-table)))
+      (dotimes (i (1+ secret-mode--max-letter-char-code))
+        (aset disptbl i
+              (pcase (get-char-code-property i 'general-category)
+                ((or 'Cc 'Cf 'Zs 'Zl 'Zp) nil)
+                ('Lu (vector (make-glyph-code ?▆)))
+                (_   (vector (make-glyph-code ?▃))))))
+      disptbl)))
+
+(defconst secret-mode-table (eval-when-compile (secret-mode--compute-table))
   "Display table for the command `secret-mode'.")
 
 ;;;###autoload
