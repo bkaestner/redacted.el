@@ -47,8 +47,8 @@
         (aset disptbl i
               (pcase (get-char-code-property i 'general-category)
                 ((or 'Cc 'Cf 'Zs 'Zl 'Zp) nil)
-                ('Lu (vector (make-glyph-code ?▆)))
-                (_   (vector (make-glyph-code ?▃))))))
+                ('Ll (vector (make-glyph-code ?▃)))
+                (_   (vector (make-glyph-code ?▆))))))
       disptbl)))
 
 (defconst secret-mode-table (eval-when-compile (secret-mode--compute-table))
