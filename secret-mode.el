@@ -1,10 +1,12 @@
-;;; secret-mode.el --- hide text in buffer           -*- lexical-binding: t; -*-
+;;; secret-mode.el --- Hide text in buffer           -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Benjamin Kästner
 
 ;; Author:  Benjamin Kästner <benjamin.kaestner@gmail.com>
+;; URL: https://github.com/bkaestner/secret-mode.el
 ;; Keywords: games
 ;; Version: 0.1.0
+;; Package-Requires: ((emacs "24.1"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
