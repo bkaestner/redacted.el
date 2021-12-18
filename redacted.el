@@ -1,9 +1,9 @@
-;;; secret-mode.el --- Hide text in buffer           -*- lexical-binding: t; -*-
+;;; redacted.el --- Obscure text in buffer           -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Benjamin Kästner
 
 ;; Author:  Benjamin Kästner <benjamin.kaestner@gmail.com>
-;; URL: https://github.com/bkaestner/secret-mode.el
+;; URL: https://github.com/bkaestner/redacted.el
 ;; Keywords: games
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "24.1"))
@@ -23,14 +23,14 @@
 
 ;;; Commentary:
 
-;; This package provides `secret-mode', a buffer-local mode that uses
+;; This package provides `redacted-mode', a buffer-local mode that uses
 ;; `buffer-display-table' to replace the displayed glyphs with Unicode
 ;; blocks.
 
 ;;; Code:
 
 (eval-and-compile
-  (defconst secret-mode--max-letter-char-code
+  (defconst redacted-mode--max-letter-char-code
     (eval-when-compile
       (let ((max-code-point #x10FFFF)    ; Max Unicode code point
             (letter-categories '(Lu Ll)) ; Upper and Lower case letters
@@ -42,10 +42,10 @@
         result))
     "Maximum Unicode code point that designates a letter.")
 
-  (defun secret-mode--compute-table ()
-    "Compute the display table for `secret-mode'."
+  (defun redacted-mode--compute-table ()
+    "Compute the display table for `redacted-mode'."
     (let ((disptbl (make-display-table)))
-      (dotimes (i (1+ secret-mode--max-letter-char-code))
+      (dotimes (i (1+ redacted-mode--max-letter-char-code))
         (aset disptbl i
               (pcase (get-char-code-property i 'general-category)
                 ((or 'Cc 'Cf 'Zs 'Zl 'Zp) nil)
@@ -53,16 +53,16 @@
                 (_   (vector (make-glyph-code ?▆))))))
       disptbl)))
 
-(defconst secret-mode-table (eval-when-compile (secret-mode--compute-table))
-  "Display table for the command `secret-mode'.")
+(defconst redacted-mode-table (eval-when-compile (redacted-mode--compute-table))
+  "Display table for the command `redacted-mode'.")
 
 ;;;###autoload
-(define-minor-mode secret-mode
-  "Hide text."
-  :lighter " Secret"
-  (if secret-mode
-      (setq buffer-display-table secret-mode-table)
+(define-minor-mode redacted-mode
+  "Obscure text."
+  :lighter " Redacted"
+  (if redacted-mode
+      (setq buffer-display-table redacted-mode-table)
     (setq buffer-display-table nil)))
 
-(provide 'secret-mode)
-;;; secret-mode.el ends here
+(provide 'redacted)
+;;; redacted.el ends here

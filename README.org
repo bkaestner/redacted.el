@@ -1,13 +1,13 @@
-#+TITLE: Secret-mode
-=secret-mode= is an Emacs [[info:emacs#Minor Modes][minor mode]] to hide your current text.
+#+TITLE: ▆▆▆▆▆▆▆▆-mode
+=redacted-mode= is an Emacs [[info:emacs#Minor Modes][minor mode]] to hide your current text.
 * Screenshot
 [[file:screenshot.png]]
 
 * Installation
-For now, copy =secret-mode.el='s content into a buffer and then use =M-x package-install-from-buffer=.
+For now, copy =redacted.el='s content into a buffer and then use =M-x package-install-from-buffer=.
 
 * Usage
-Use =M-x secret-mode= to enable =secret-mode= in the current buffer.
+Use =M-x redacted-mode= to enable =redacted-mode= in the current buffer.
 
 * Motivation
 While working on a completely unrelated task, I wanted to share a screenshot of my current Emacs frame, but /not/ of the actual text contents. And while GIMP's pixelate filter did the job, I didn't want to fire up my image manipulation program just to share a picture of a custom theme or some functionality.
