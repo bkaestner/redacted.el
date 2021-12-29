@@ -4,7 +4,20 @@
 [[file:screenshot.png]]
 
 * Installation
-For now, copy =redacted.el='s content into a buffer and then use =M-x package-install-from-buffer=.
+The easiest way to install =redacted= is MELPA. You can use ~package.el~:
+
+#+begin_src emacs-lisp
+;; Set up package.el to work with MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+(package-refresh-contents)
+
+;; Download redacted
+(unless (package-installed-p 'redacted)
+  (package-install 'redacted))
+#+end_src
 
 * Usage
 Use =M-x redacted-mode= to enable =redacted-mode= in the current buffer.
