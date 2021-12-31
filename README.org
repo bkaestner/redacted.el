@@ -22,6 +22,13 @@ The easiest way to install =redacted= is MELPA. You can use ~package.el~:
 * Usage
 Use =M-x redacted-mode= to enable =redacted-mode= in the current buffer.
 
+To automatically run commands when =redacted-mode= is enabled use the provided =redacted-mode-hook=. Here is an example that automatically makes the buffer read-only when =redacted-mode= is enabled:
+
+#+begin_src emacs-lisp
+;; Enable `read-only-mode' to ensure that we don't change what we can't read.
+(add-hook 'redacted-mode-hook (lambda () (read-only-mode (if redacted-mode 1 -1))))
+#+end_src
+
 * Motivation
 While working on a completely unrelated task, I wanted to share a screenshot of my current Emacs frame, but /not/ of the actual text contents. And while GIMP's pixelate filter did the job, I didn't want to fire up my image manipulation program just to share a picture of a custom theme or some functionality.
 
