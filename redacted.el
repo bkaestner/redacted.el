@@ -57,6 +57,18 @@
   "Display table for the command `redacted-mode'.")
 
 ;;;###autoload
+(defun zone-pgm-redacted ()
+  "Zone out with redacted text."
+  (cl-loop
+   while (not (input-pending-p))
+   with k = 0 do
+   (cl-loop
+    for i from (window-start) to (1- (window-end)) do
+    (setq buffer-display-table redacted-mode-table))
+   (sit-for 0.1)
+   (cl-incf k)))
+
+;;;###autoload
 (define-minor-mode redacted-mode
   "Obscure text."
   :lighter " Redacted"
